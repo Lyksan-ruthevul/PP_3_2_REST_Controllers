@@ -10,6 +10,7 @@ import ru.kata.spring.boot_security.demo.security.UserDetailsServiceImpl;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -27,12 +28,17 @@ public class AdminController {
         this.userDetailsService = userDetailsService;
     }
 
-    @GetMapping("/users")
+    @GetMapping("/")
+    public ResponseEntity<User> showAdminInfo(Principal principal) {
+        User user = userDetailsService.findByUsername(principal.getName());
+        return ResponseEntity.ok().body(user);
+    }
+    @GetMapping("/listUsers")
     public ResponseEntity<List<User>> getAllUsers() {
         return ResponseEntity.ok().body(userService.displayAllUsers());
     }
 
-    @GetMapping("/roles")
+    @GetMapping("/listRoles")
     public ResponseEntity<List<Role>> getAllRoles() {
         return ResponseEntity.ok().body(roleService.getRoles());
     }
