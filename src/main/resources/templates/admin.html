@@ -12,9 +12,9 @@
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarText">
             <div class="p-3 mb-2 text-white col-10">
-                <span class="fw-bold" th:text="${user.getEmail()}"></span>
+                <span class="fw-bold" id="userName"></span>
                 with roles:
-                <span th:each="role : ${user.roles}" th:text="${role.getRoleName().replace('ROLE_', ' ')}"></span>
+                <span id="userRole"></span>
             </div>
             <div class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <a style="color: #808080" th:href="@{/logout}" class="nav-link">Logout</a>
@@ -44,7 +44,7 @@
                     <a class="nav-link active" aria-current="page" th:href="@{/admin/user}">Users table</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/admin/showAddNewUserForm}">New User</a>
+                    <a class="nav-link" th:href="@{/admin/addUser}">New User</a>
                 </li>
             </ul>
 
@@ -63,17 +63,7 @@
                         <th>Delete</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr th:each="user : ${allUsers}">
-                        <td th:text="${user.id}"></td>
-                        <td th:text="${user.name}"></td>
-                        <td th:text="${user.surname}"></td>
-                        <td th:text="${user.age}"></td>
-                        <td th:text="${user.email}"></td>
-                        <td>
-                        <span th:each="role : ${user.roles}"
-                              th:text="${role.getRoleName().replace('ROLE_', ' ')}"></span>
-                        </td>
+                    <tbody id="AllUsersTable"></tbody>>
 
 
                         <!--modal edit-->

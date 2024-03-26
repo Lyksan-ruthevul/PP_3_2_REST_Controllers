@@ -1,9 +1,9 @@
 $(async function () {
     await showUserInfo();
-});
+})
 
 async function showUserInfo() {
-    fetch("/api/user") 
+    fetch("/user/")
         .then(response => response.json())
         .then(data => {
             document.querySelector('#userName').textContent = data.email;
@@ -18,7 +18,4 @@ async function showUserInfo() {
                     <td>${data.roles.map(role => " " + role.roleName.substring(5))}</td>)</tr>`;
             $('#userInfo').append(user);
         })
-        .catch(error => console.log(error))
 }
-
-        

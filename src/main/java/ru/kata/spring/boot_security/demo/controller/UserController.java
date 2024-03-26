@@ -13,7 +13,7 @@ import ru.kata.spring.boot_security.demo.security.UserDetailsServiceImpl;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/user")
 public class UserController {
     private UserDetailsServiceImpl userDetailsService;
 
@@ -22,9 +22,9 @@ public class UserController {
         this.userDetailsService = userDetailsService;
     }
 
-    @GetMapping("/user")
+    @GetMapping("/")
     public ResponseEntity<User> showUserInfo(Principal principal) {
         User user = userDetailsService.findByUsername(principal.getName());
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        return ResponseEntity.ok().body(user);
     }
 }
