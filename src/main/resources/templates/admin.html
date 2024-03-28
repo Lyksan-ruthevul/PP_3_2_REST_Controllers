@@ -106,7 +106,8 @@
                                                         </p>
 
                                                         <p>
-                                                            <label class="container-fluid" for="lastName"><strong>Last Name</strong>
+                                                            <label class="container-fluid" for="lastName"><strong>Last
+                                                                Name</strong>
                                                                 <input class="form-control" type="text" name="lastName"
                                                                        id="lastName"/>
                                                             </label>
@@ -115,7 +116,7 @@
                                                         <p>
                                                             <label class="container-fluid"
                                                                    for="age"><strong>Age</strong>
-                                                                <input class="form-control" type="text" name="age"
+                                                                <input class="form-control" type="number" name="age"
                                                                        id="age"/>
                                                             </label>
                                                         </p>
@@ -157,7 +158,7 @@
                         </div>
                     </div>
 
-                <!--Admin panel отображение данных во вкладке User-->
+                    <!--Admin panel отображение данных во вкладке User-->
                     <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
                          aria-labelledby="v-pills-profile-tab" tabindex="0">
                         <h1>User information-page</h1>
@@ -192,7 +193,7 @@
         </div>
 
 
-                    <!--modal edit-->
+        <!--modal edit-->
         <div class="modal fade" id="edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
              aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -259,7 +260,7 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit"  id="editUserButton" class="btn btn-primary">Edit</button>
+                                <button type="submit" id="editUserButton" class="btn btn-primary">Edit</button>
                             </div>
                         </form>
                     </div>
@@ -269,99 +270,84 @@
     </div>
 </div>
 
-                                            <!--delete edit-->
+<!--delete modal-->
 
+<div class="modal fade" id="delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id="form-delete">
+                <form id="deleteForm">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabelDelete">Delete User</h1>
+                        <button type="button" id="deleteFormCloseButton" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
 
-                    <!--                        <td><a class="btn btn-danger" data-bs-toggle="modal"-->
-                    <!--                               th:href="${'#delModal'+ user.getId()}">Delete</a>-->
-                    <!--                            <div class="modal fade" th:id="${'delModal'+ user.getId()}" tabindex="-1"-->
-                    <!--                                 aria-labelledby="delModalLabel" aria-hidden="true">-->
-                    <!--                                <div class="modal-dialog">-->
-                    <!--                                    <div class="modal-content">-->
-                    <!--                                        <div class="modal-header">-->
-                    <!--                                            <h5 class="modal-title" id="delModalLabel">Delete user</h5>-->
-                    <!--                                            <button type="button" class="btn-close" data-bs-dismiss="modal"-->
-                    <!--                                                    aria-label="Close"></button>-->
-                    <!--                                        </div>-->
+                    <div class="modal-body">
+                        <div class="modal-body text-center">
+                            <div class="form-group required">
+                                <div class="controls">
+                                    <p>
+                                        <label for="idDel"><strong>ID</strong>
+                                            <input class="form-control" type="number" name="id"
+                                                   id="idDel" disabled>
+                                        </label>
+                                    </p>
 
-                    <!--                                        <div class="modal-body d-flex justify-content-center">-->
-                    <!--                                            <form class="form w-50 mt-4 mb-4" th:method="GET"-->
-                    <!--                                                  th:action="@{/admin/deleteUser}"-->
-                    <!--                                                  th:object="${user}"-->
-                    <!--                                                  th:id="${'formDel'+ user.getId()}">-->
-                    <!--                                                <input type="hidden" th:name="id" th:value="${user.getId()}">-->
+                                    <p>
+                                        <label for="nameDel"><strong>First Name</strong>
+                                            <input class="form-control" type="text" name="firstName"
+                                                   id="nameDel"
+                                                   disabled>
+                                        </label>
+                                    </p>
 
-                    <!--                                                <div class="row mb-2">-->
-                    <!--                                                    <label class="form-label d-flex justify-content-center fw-bold fs-5 mb-0"-->
-                    <!--                                                           for="idDel">ID</label>-->
-                    <!--                                                    <input class="form-control d-flex justify-content-center"-->
-                    <!--                                                           type="text"-->
-                    <!--                                                           th:name="id" th:value="${user.getId()}" id="idDel" disabled>-->
-                    <!--                                                </div>-->
+                                    <p>
+                                        <label for="lastnameDel"><strong>Last Name</strong>
+                                            <input class="form-control" type="text" name="lastName"
+                                                   id="lastnameDel"
+                                                   disabled>
+                                        </label>
+                                    </p>
 
-                    <!--                                                <div class="row mb-2">-->
-                    <!--                                                    <label class="form-label d-flex justify-content-center fw-bold fs-5 mb-0"-->
-                    <!--                                                           for="nameDel">First name</label>-->
-                    <!--                                                    <input class="form-control d-flex justify-content-center"-->
-                    <!--                                                           type="text"-->
-                    <!--                                                           th:name="name" th:value="${user.getName()}" id="nameDel"-->
-                    <!--                                                           disabled>-->
-                    <!--                                                </div>-->
+                                    <p>
+                                        <label for="ageDel"><strong>Age</strong>
+                                            <input class="form-control" type="number" name="age"
+                                                   id="ageDel"
+                                                   disabled>
+                                        </label>
+                                    </p>
 
-                    <!--                                                <div class="row mb-2">-->
-                    <!--                                                    <label class="form-label d-flex justify-content-center fw-bold fs-5 mb-0"-->
-                    <!--                                                           for="lastnameDel">Last name</label>-->
-                    <!--                                                    <input class="form-control d-flex justify-content-center"-->
-                    <!--                                                           type="text"-->
-                    <!--                                                           th:name="surname" th:value="${user.getSurname()}"-->
-                    <!--                                                           id="lastnameDel" disabled>-->
-                    <!--                                                </div>-->
+                                    <p>
+                                        <label for="emailDel"><strong>Email</strong>
+                                            <input class="form-control" type="email" name="email"
+                                                   id="emailDel"
+                                                   disabled>
+                                        </label>
+                                    </p>
 
-                    <!--                                                <div class="row mb-2">-->
-                    <!--                                                    <label class="form-label d-flex justify-content-center fw-bold fs-5 mb-0"-->
-                    <!--                                                           for="ageDel">Age</label>-->
-                    <!--                                                    <input class="form-control d-flex justify-content-center"-->
-                    <!--                                                           type="number"-->
-                    <!--                                                           th:name="age" th:value="${user.getAge()}"-->
-                    <!--                                                           id="ageDel" disabled>-->
-                    <!--                                                </div>-->
-
-                    <!--                                                <div class="row mb-2">-->
-                    <!--                                                    <label class="form-label d-flex justify-content-center fw-bold fs-5 mb-1"-->
-                    <!--                                                           for="emailDel">Email</label>-->
-                    <!--                                                    <input class="form-control d-flex justify-content-center"-->
-                    <!--                                                           type="text"-->
-                    <!--                                                           th:name="email" th:value="${user.getEmail()}" id="emailDel"-->
-                    <!--                                                           disabled>-->
-                    <!--                                                </div>-->
-
-                    <!--                                                <div class="row mb-2">-->
-                    <!--                                                    <label class="form-label d-flex justify-content-center fw-bold fs-5 mb-1"-->
-                    <!--                                                           for="selectDelRole">Role</label>-->
-                    <!--                                                    <select class="form-select" aria-label="Default select" name="roles"-->
-                    <!--                                                            size="2" multiple id="selectDelRole" disabled>-->
-                    <!--                                                        <option th:each="role : ${roles}"-->
-                    <!--                                                                th:text="${role.getRoleName().replace('ROLE_', ' ')}"-->
-                    <!--                                                                th:value="${role.id}"></option>-->
-                    <!--                                                    </select>-->
-                    <!--                                                </div>-->
-                    <!--                                            </form>-->
-                    <!--                                        </div>-->
-
-                    <!--                                        <div class="modal-footer">-->
-                    <!--                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">-->
-                    <!--                                                Close-->
-                    <!--                                            </button>-->
-                    <!--                                            <input th:form="${'formDel'+ user.getId()}" class="btn btn-danger"-->
-                    <!--                                                   type="submit"-->
-                    <!--                                                   value="Delete">-->
-                    <!--                                        </div>-->
-                    <!--                                    </div>-->
-                    <!--                                </div>-->
-                    <!--                            </div>-->
-                    <!--                        </td>-->
-                    <!--                    </tr>-->
-
+                                    <label class="container-fluid col-6"
+                                           for="selectDelRole"><strong>Role</strong>
+                                        <select class="form-control" id="selectDelRole" name="roles" multiple
+                                                size="2"
+                                                disabled>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" id="deleteUserButton" class="btn btn-danger btn btn-primary">Delete
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js"

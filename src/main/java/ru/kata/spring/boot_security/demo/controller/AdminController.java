@@ -33,6 +33,7 @@ public class AdminController {
         User user = userDetailsService.findByUsername(principal.getName());
         return ResponseEntity.ok().body(user);
     }
+
     @GetMapping("/listUsers")
     public ResponseEntity<List<User>> getAllUsers() {
         return ResponseEntity.ok().body(userService.displayAllUsers());

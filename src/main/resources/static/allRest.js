@@ -108,7 +108,7 @@ async function addUser() {
     }
 }
 
-//user by id
+//get user by id
 async function getUser(id) {
     let response = await fetch("/admin/getUserById/" + id);
     return await response.json();
@@ -185,4 +185,53 @@ async function updateUser() {
                 $('#editFormCloseButton').click();
             });
     });
+}
+
+//delete user(D)
+$('#delete').on('show.bs.modal', ev => {
+    let button = $(ev.relatedTarget);
+    let id = button.data('id');
+    showDeleteModal(id);
+})
+
+async function showDeleteModal(id) {
+    let user = await getUser(id)
+    const form = document.forms["deleteForm"];
+
+    form.idDel.value = user.id;
+    form.nameDel.value = user.name;
+    form.lastnameDel.value = user.surname;
+    form.ageDel.value = user.age;
+    form.emailDel.value = user.email;
+
+    $('#selectDelRole').empty();
+    user.roles.forEach(role => {
+        let el = document.createElement("option");
+        el.text = role.roleName.substring(5);
+        el.value = role.id;
+        $('#selectDelRole')[0].appendChild(el);
+    });
+}
+
+$('#deleteUserButton').click(() => {
+    deleteUser();
+});
+
+async function deleteUser() {
+
+    const deleteForm = document.forms["deleteForm"];
+    const id = deleteForm.idDel.value;
+
+    deleteForm.addEventListener("submit", ev => {
+        ev.preventDefault();
+        fetch("/admin/deleteUser/" + id, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(() => {
+            getAllUsers();
+            $('#deleteFormCloseButton').click();
+        })
+    })
 }
