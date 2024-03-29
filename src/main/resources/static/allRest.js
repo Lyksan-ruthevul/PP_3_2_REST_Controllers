@@ -2,7 +2,6 @@ $(async function () {
     await showUserInfo();
     await getAllUsers();
     await addUser();
-    await saveEditUser();
 })
 
 // show user(R) User and Admin panel
@@ -103,8 +102,9 @@ async function addUser() {
                 roles: newUserRoles
             })
         });
+        addUserForm.reset();
         getAllUsers();
-        window.location.href = "/admin";
+        $('#nav-home-tab').click();
     }
 }
 
@@ -154,7 +154,6 @@ async function updateUser() {
 
     const editForm = document.forms["editForm"];
     const id = editForm.idUpdate.value;
-
     editForm.addEventListener("submit", async (ev) => {
         ev.preventDefault();
         let editUserRoles = [];
@@ -233,5 +232,5 @@ async function deleteUser() {
             getAllUsers();
             $('#deleteFormCloseButton').click();
         })
-    })
+    });
 }
